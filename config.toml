@@ -1,2 +1,4 @@
-[permalinks]
-    post = "/:year/:month/:day/:slug/" 
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
