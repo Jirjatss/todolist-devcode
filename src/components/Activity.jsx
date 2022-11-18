@@ -98,7 +98,7 @@ const Activity = () => {
                           <label htmlFor={`delete${el.id}`} className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
                             Batal
                           </label>
-                          <label htmlFor={`information${el.id}`} className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => handledelete(el.id)}>
+                          <label htmlFor={`delete${el.id}`} className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => handledelete(el.id)}>
                             Hapus
                           </label>
                         </div>
