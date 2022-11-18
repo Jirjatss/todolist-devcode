@@ -5,7 +5,7 @@ const ItemTodo = (props) => {
   const [modal, setModal] = useState(false);
   return (
     <>
-      <div className="flex bg-white w-full rounded-xl border border-gray-200 shadow-xl lg:px-10 px-4 py-8 mb-2 font-signika" data-cy="todo-add-button" key={props.id}>
+      <div className="flex bg-white w-full rounded-xl border border-gray-200 shadow-xl lg:px-10 px-4 py-8 mb-2 font-signika" data-cy="todo-add-button">
         <div className="flex flex-row justify-between items-center" data-cy="todo-item">
           <div className="inline-flex items-center gap-4">
             <input
@@ -29,7 +29,7 @@ const ItemTodo = (props) => {
             <label className={`cursor-pointer ${props.is_active === 0 ? "hidden" : ""}`} htmlFor={props.id}>
               📝
             </label>
-            <label htmlFor="deltodo" className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute lg:right-24 right-6">
+            <label htmlFor="deltodo" onClick={() => setModal(true)} className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute lg:right-24 right-6">
               <Trash />
             </label>
           </div>
@@ -44,7 +44,7 @@ const ItemTodo = (props) => {
               <label htmlFor="deltodo" className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
                 Batal
               </label>
-              <label htmlFor="infotodo" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => props.del(props.id, setModal(!modal))} data-cy="modal-delete-confirm-button">
+              <label htmlFor="infotodo" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => props.del(props.id, setModal(false))} data-cy="modal-delete-confirm-button">
                 Hapus
               </label>
             </div>
