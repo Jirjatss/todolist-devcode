@@ -35,8 +35,8 @@ const ItemTodo = (props, setData) => {
           </div>
         </div>
       </div>
-      <input type="checkbox" id={`delete${props.id}`} data-cy="todo-item-delete-button" className={modal ? "modal-toggle" : "hidden"} />
-      <label htmlFor={`delete${props.id}`} className="modal cursor-pointer">
+      <input type="checkbox" id={`delete${props.id}`} data-cy="modal-delete" className={modal ? "modal-toggle" : "hidden"} />
+      <label htmlFor={`delete${props.id}`} className="modal cursor-pointer" data-cy="todo-item-delete-button">
         <label className="modal-box relative bg-white" htmlFor="">
           <div className="text-center text-7xl mb-5">⚠️</div>
           <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
