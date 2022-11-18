@@ -56,7 +56,7 @@ const Title = (props) => {
                 <input
                   type="text"
                   id="item-title"
-                  data-cy="todo-title"
+                  data-cy="edit-todo-title"
                   className="bg-transparent border-b-2 font-bold lg:text-2xl sm:text-sm lg:w-96 md:w-96 w-44 h-8 rounded-lg"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
