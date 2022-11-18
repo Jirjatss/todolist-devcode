@@ -90,7 +90,7 @@ const Activity = () => {
 
                     <input type="checkbox" id="modal-delete" data-cy="modal-delete" className="modal-toggle" />
                     <label htmlFor="modal-delete" className="modal cursor-pointer">
-                      <label className="modal-box relative bg-white" htmlFor="">
+                      <label className="modal-box relative bg-white">
                         <div className="text-center text-7xl mb-5">⚠️</div>
                         <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
                         <h3 className="font-bold text-lg text-center">"{el.title}"</h3>
