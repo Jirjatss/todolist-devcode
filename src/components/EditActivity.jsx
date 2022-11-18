@@ -69,25 +69,8 @@ const EditActivity = () => {
   };
 
   const deltodo = (id, title) => {
-    Swal.fire({
-      icon: "warning",
-      text: `"Apakah anda yakin akan menhapus ${title}?"`,
-      showConfirmButton: false,
-      showDenyButton: true,
-      showCancelButton: true,
-      denyButtonText: `Hapus`,
-    }).then((result) => {
-      if (result.isDenied) {
-        axios.delete(`https://todo.api.devcode.gethired.id/todo-items/${id}`).then((res) => {
-          setItem(res.data);
-        });
-        Swal.fire({
-          icon: "success",
-          html: '<span className="font-medium">Activity berhasil dihapus</span>',
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      }
+    axios.delete(`https://todo.api.devcode.gethired.id/todo-items/${id}`).then((res) => {
+      setItem(res.data);
     });
     setData([]);
   };
@@ -147,7 +130,7 @@ const EditActivity = () => {
     <div className="bg-white h-screen text-black font-signika" data-cy="edit-activity">
       <Nav />
       <div key={activity.id} id={`detail/(activity.id)`} className="bg-white">
-        <Title title={activity.title} back={backPath} button={<ArrowLeft />} data_cy={"todo-add-button"} />
+        <Title title={activity.title} back={backPath} button={<ArrowLeft />} data_cy={"todo-add-button"} sort={"todo-sort-button"} />
         <div className="lg:px-16 px-2">
           {data1 == 0 && (
             <>

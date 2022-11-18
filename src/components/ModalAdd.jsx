@@ -132,9 +132,9 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
 
           <div className="modal-action" data-cy="modal-add-save-button">
             {list === "null" || priority === "Choose Priority" ? (
-              <label className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold" disabled>
+              <div className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold" disabled>
                 Save
-              </label>
+              </div>
             ) : (
               <label className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold" htmlFor="mymodal2" onClick={() => editor()}>
                 Save
