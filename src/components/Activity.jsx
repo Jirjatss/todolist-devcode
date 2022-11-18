@@ -105,14 +105,14 @@ const Activity = () => {
                       </label>
                     </label>
 
-                    <input type="checkbox" id={`information${el.id}`} className="modal-toggle" data-cy="modal-information" />
+                    {/* <input type="checkbox" id={`information${el.id}`} className="modal-toggle" data-cy="modal-information" />
                     <label htmlFor={`information${el.id}`} className="modal cursor-pointer" data-cy="modal-information">
                       <label className="modal-box relative  bg-white" htmlFor="">
                         <h3 className="text-lg">
                           <span>✔️</span> "{el.title}" Berhasil dihapus
                         </h3>
                       </label>
-                    </label>
+                    </label> */}
                   </>
                 );
               })}
