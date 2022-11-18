@@ -88,7 +88,7 @@ const Activity = () => {
                       </div>
                     </div>
 
-                    <input type="checkbox" id={`delete${el.id}`} className={modal ? "modal-toggle" : "hidden"} />
+                    <input type="checkbox" id={`delete${el.id}`} data-cy="modal-delete" className={modal ? "modal-toggle" : "hidden"} />
                     <label htmlFor={`delete${el.id}`} className="modal cursor-pointer">
                       <label className="modal-box relative bg-white" htmlFor="">
                         <div className="text-center text-7xl mb-5">⚠️</div>
@@ -98,7 +98,7 @@ const Activity = () => {
                           <label htmlFor={`delete${el.id}`} className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
                             Batal
                           </label>
-                          <label htmlFor={`information${el.id}`} className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" data-cy="modal-delete-cancel-button" onClick={() => handledelete(el.id, setModal(false))}>
+                          <label htmlFor={`information${el.id}`} className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => handledelete(el.id, setModal(false))}>
                             Hapus
                           </label>
                         </div>
