@@ -4,8 +4,8 @@ import { Trash } from "react-bootstrap-icons";
 const ItemTodo = (props) => {
   const [modal, setModal] = useState(false);
   return (
-    <div key={props.id}>
-      <div className="flex bg-white w-full rounded-xl border border-gray-200 shadow-xl lg:px-10 px-4 py-8 mb-2 font-signika" data-cy="todo-add-button">
+    <>
+      <div className="flex bg-white w-full rounded-xl border border-gray-200 shadow-xl lg:px-10 px-4 py-8 mb-2 font-signika" data-cy="todo-add-button" key={props.id}>
         <div className="flex flex-row justify-between items-center" data-cy="todo-item">
           <div className="inline-flex items-center gap-4">
             <input
@@ -34,32 +34,32 @@ const ItemTodo = (props) => {
             </label>
           </div>
         </div>
+        <input type="checkbox" id="deltodo" data-cy="todo-item-delete-button" className={modal ? "modal-toggle" : "hidden"} />
+        <label htmlFor="deltodo" className="modal cursor-pointer" data-cy="todo-item-delete-button">
+          <label className="modal-box relative bg-white" htmlFor="">
+            <div className="text-center text-7xl mb-5">⚠️</div>
+            <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
+            <h3 className="font-bold text-lg text-center">"{props.title}"</h3>
+            <div className="modal-action grid grid-cols-2 px-10">
+              <label htmlFor="deltodo" className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
+                Batal
+              </label>
+              <label htmlFor="infotodo" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => props.del(props.id, setModal(false))} data-cy="modal-delete-confirm-button">
+                Hapus
+              </label>
+            </div>
+          </label>
+        </label>
+        <input type="checkbox" id="infotodo" className="modal-toggle" data-cy="modal-information" />
+        <label htmlFor="infotodo" className="modal cursor-pointer" data-cy="modal-information">
+          <label className="modal-box relative  bg-white" htmlFor="">
+            <h3 className="text-lg">
+              <span>✔️</span> "{props.title}" Berhasil dihapus
+            </h3>
+          </label>
+        </label>
       </div>
-      <input type="checkbox" id="deltodo" data-cy="todo-item-delete-button" className={modal ? "modal-toggle" : "hidden"} />
-      <label htmlFor="deltodo" className="modal cursor-pointer" data-cy="todo-item-delete-button">
-        <label className="modal-box relative bg-white" htmlFor="">
-          <div className="text-center text-7xl mb-5">⚠️</div>
-          <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
-          <h3 className="font-bold text-lg text-center">"{props.title}"</h3>
-          <div className="modal-action grid grid-cols-2 px-10">
-            <label htmlFor="deltodo" className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
-              Batal
-            </label>
-            <label htmlFor="infotodo" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => props.del(props.id, setModal(false))} data-cy="modal-delete-confirm-button">
-              Hapus
-            </label>
-          </div>
-        </label>
-      </label>
-      <input type="checkbox" id="infotodo" className="modal-toggle" data-cy="modal-information" />
-      <label htmlFor="infotodo" className="modal cursor-pointer" data-cy="modal-information">
-        <label className="modal-box relative  bg-white" htmlFor="">
-          <h3 className="text-lg">
-            <span>✔️</span> "{props.title}" Berhasil dihapus
-          </h3>
-        </label>
-      </label>
-    </div>
+    </>
   );
 };
 
