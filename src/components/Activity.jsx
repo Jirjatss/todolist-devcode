@@ -65,7 +65,7 @@ const Activity = () => {
       <>
         {todos && (
           <>
-            <Title title="Activity" function={handleAddTodo} />
+            <Title title="Activity" function={handleAddTodo} data_cy={"activity-add-button"} />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-4 px-4" data-cy="activity-item">
               {todos.map((el) => {
                 return (
@@ -95,7 +95,7 @@ const Activity = () => {
                         <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
                         <h3 className="font-bold text-lg text-center">"{el.title}"</h3>
                         <div className="modal-action grid grid-cols-2 px-10">
-                          <label htmlFor={`delete${el.id}`} className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
+                          <label onClick={() => setModal(false)} className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
                             Batal
                           </label>
                           <label htmlFor={`information${el.id}`} className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => handledelete(el.id, setModal(false))}>
