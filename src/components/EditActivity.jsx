@@ -130,7 +130,7 @@ const EditActivity = () => {
     <div className="bg-white h-screen text-black font-signika" data-cy="edit-activity">
       <Nav />
       <div key={activity.id} id={`detail/(activity.id)`} className="bg-white">
-        <Title title={activity.title} back={backPath} button={<ArrowLeft />} data_cy={"todo-add-button"} sort={"todo-sort-button"} />
+        <Title title={activity.title} back={backPath} button={<ArrowLeft />} />
         <div className="lg:px-16 px-2">
           {data1 == 0 && (
             <>
