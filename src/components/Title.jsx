@@ -40,7 +40,7 @@ const Title = (props) => {
   return (
     <>
       <div className="flex justify-between items-center w-full py-12 lg:px-16 px-8">
-        <div className="font-bold text-4xl flex" data-cy="header-title">
+        <div className="font-bold text-4xl flex" data-cy="activity-title">
           <span className="mr-2 cursor-pointer" onClick={props.back}>
             {props.button}
           </span>

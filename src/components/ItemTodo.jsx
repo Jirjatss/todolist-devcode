@@ -27,7 +27,7 @@ const ItemTodo = (props, setData) => {
           <label className={`cursor-pointer ${props.is_active === 0 ? "hidden" : ""}`} htmlFor={props.id}>
             📝
           </label>
-          <button onClick={props.del} className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute lg:right-24 right-6" data-cy="activity-item-delete-button">
+          <button onClick={props.del} className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute lg:right-24 right-6" data-cy="todo-item-delete-button">
             <Trash />
           </button>
         </div>
