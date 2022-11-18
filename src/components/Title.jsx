@@ -36,7 +36,7 @@ const Title = (props) => {
 
   useEffect(() => {
     setPath(currentPath);
-  }, [path, currentPath]);
+  }, [path]);
   return (
     <>
       <div className="flex justify-between items-center w-full py-12 lg:px-16 px-8">
