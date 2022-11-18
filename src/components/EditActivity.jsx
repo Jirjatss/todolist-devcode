@@ -132,7 +132,7 @@ const EditActivity = () => {
       <div key={activity.id} id={`detail/(activity.id)`} className="bg-white">
         <Title title={activity.title} back={backPath} button={<ArrowLeft />} data_cy={"todo-add-button"} sort={"todo-sort-button"} />
         <div className="lg:px-16 px-2">
-          {data1 == 0 && (
+          {!data1 && (
             <>
               <img src={empty} alt="empty-state" className="lg:w-1/3 h-80 mx-auto -mt-4 " data-cy="todo-empty-state" />
             </>
