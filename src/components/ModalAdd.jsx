@@ -67,7 +67,7 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
 
   return (
     <div className="relative  bg-white">
-      <input type="checkbox" id="mymodal2" className="modal-toggle" />
+      <input type="checkbox" id="mymodal2" className="modal-toggle" data-cy="modal-add" />
       <div className="modal">
         <div className="modal-box bg-white border border-b-slate-400">
           <label htmlFor="mymodal2" className="btn btn-sm btn-circle absolute right-2 bg-red-600 top-2 text-white hover:bg-red-700 border-none">
@@ -92,6 +92,7 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
           <button
             id="dropdownDefault"
             data-dropdown-toggle="dropdown"
+            data-cy="modal-add-priority-dropdown"
             className=" bg-white input border-primary outline-none ring-0 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center mt-2 w-44 relative"
             type="button"
             onClick={() => setOpenDropdwon(!openDropdown)}
@@ -131,14 +132,14 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
           )}
 
           <div className="modal-action" data-cy="modal-add-save-button">
-            {list === "null" || priority === "Choose Priority" ? (
-              <div className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold" disabled>
+            {list === "" || priority === "Choose Priority" ? (
+              <button className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold" disabled>
                 Save
-              </div>
+              </button>
             ) : (
-              <label className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold" htmlFor="mymodal2" onClick={() => editor()}>
+              <button className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold" htmlFor="mymodal2" onClick={() => editor()}>
                 Save
-              </label>
+              </button>
             )}
           </div>
         </div>
