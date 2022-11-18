@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Activity = () => {
   const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
 
   const { todos } = useSelector((state) => state.todo);
   const nav = useNavigate();
@@ -24,29 +25,10 @@ const Activity = () => {
   }
 
   function handledelete(id, title) {
-    dispatch(getDataTodos(todos));
-    nav("/");
-    Swal.fire({
-      icon: "warning",
-      title: "Apakah anda yakin?",
-      text: `"${title}"`,
-      showConfirmButton: false,
-      showDenyButton: true,
-      showCancelButton: true,
-      denyButtonText: `Hapus`,
-    }).then((result) => {
-      if (result.isDenied) {
-        axios.delete(`https://todo.api.devcode.gethired.id/activity-groups/${id}`).then((data) => {
-          dispatch(getDataTodos(data));
-        });
-        Swal.fire({
-          icon: "success",
-          html: '<span className="font-medium" data-cy="modal-information">Activity berhasil dihapus </span>',
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      }
+    axios.delete(`https://todo.api.devcode.gethired.id/activity-groups/${id}`).then((data) => {
+      dispatch(getDataTodos(data));
     });
+    dispatch(getDataTodos(todos));
   }
 
   const handleAddTodo = (event) => {
@@ -87,23 +69,50 @@ const Activity = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-4 px-4" data-cy="activity-item">
               {todos.map((el) => {
                 return (
-                  <div key={el.id} id={el.id}>
-                    <div className="mx-auto py-2 w-full px-4 relative">
-                      <div className="p-6 w-full lg:w-full h-56 bg-white rounded-xl border border-gray-200 shadow-xl inline-flex flex-col justify-between cursor-pointer" onClick={() => openEdit(el.id)}>
-                        <h1 className="mb-2 text-xl font-bold" data-cy="activity-item-title">
-                          {el.title}
-                        </h1>
-                        <div className="flex flex-row justify-between items-center">
-                          <p className=" lg:font-medium text-gray-700 text-sm" data-cy="activity-item-date">
-                            {dateFunc(el.created_at)}
-                          </p>
+                  <>
+                    <div key={el.id} id={el.id}>
+                      <div className="mx-auto py-2 w-full px-4 relative">
+                        <div className="p-6 w-full lg:w-full h-56 bg-white rounded-xl border border-gray-200 shadow-xl inline-flex flex-col justify-between cursor-pointer" onClick={() => openEdit(el.id)}>
+                          <h1 className="mb-2 text-xl font-bold" data-cy="activity-item-title">
+                            {el.title}
+                          </h1>
+                          <div className="flex flex-row justify-between items-center">
+                            <p className=" lg:font-medium text-gray-700 text-sm" data-cy="activity-item-date">
+                              {dateFunc(el.created_at)}
+                            </p>
+                          </div>
                         </div>
+                        <label htmlFor={`delete${el.id}`} className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute right-8 bottom-7" data-cy="activity-item-delete-button" onClick={() => setModal(true)}>
+                          <Trash />
+                        </label>
                       </div>
-                      <button htmlFor="my-modal" className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute right-8 bottom-7" data-cy="activity-item-delete-button" onClick={() => handledelete(el.id, el.title)}>
-                        <Trash />
-                      </button>
                     </div>
-                  </div>
+
+                    <input type="checkbox" id={`delete${el.id}`} className={modal ? "modal-toggle" : "hidden"} />
+                    <label htmlFor={`delete${el.id}`} className="modal cursor-pointer">
+                      <label className="modal-box relative bg-white" htmlFor="">
+                        <div className="text-center text-7xl mb-5">⚠️</div>
+                        <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
+                        <h3 className="font-bold text-lg text-center">"{el.title}"</h3>
+                        <div className="modal-action grid grid-cols-2 px-10">
+                          <label htmlFor={`delete${el.id}`} className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
+                            Batal
+                          </label>
+                          <label htmlFor={`information${el.id}`} className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" data-cy="modal-delete-cancel-button" onClick={() => handledelete(el.id, setModal(false))}>
+                            Hapus
+                          </label>
+                        </div>
+                      </label>
+                    </label>
+                    <input type="checkbox" id={`information${el.id}`} className="modal-toggle" data-cy="modal-information" />
+                    <label htmlFor={`information${el.id}`} className="modal cursor-pointer" data-cy="modal-information">
+                      <label className="modal-box relative  bg-white" htmlFor="">
+                        <h3 className="text-lg">
+                          <span>✔️</span> "{el.title}" Berhasil dihapus
+                        </h3>
+                      </label>
+                    </label>
+                  </>
                 );
               })}
             </div>
