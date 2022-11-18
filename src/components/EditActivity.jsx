@@ -141,7 +141,7 @@ const EditActivity = () => {
   useEffect(() => {
     getItemsList();
     getEditdata();
-  }, []);
+  }, [activity]);
 
   return (
     <div className="bg-white h-screen text-black font-signika" data-cy="edit-activity">
@@ -161,7 +161,7 @@ const EditActivity = () => {
                 return (
                   <>
                     <ItemTodo key={el.id} id={el.id} is_active={el.is_active} title={el.title} priority={el.priority} del={() => deltodo(el.id, el.title)} status={() => setActiveStatus(el.id, el.is_active)} setData={setData} props={el} />
-                    <ModalEdit id={el.id} title={el.title} priority={el.priority} />
+                    <ModalEdit key={el.id} id={el.id} title={el.title} priority={el.priority} />
                   </>
                 );
               })}

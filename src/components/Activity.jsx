@@ -68,12 +68,6 @@ const Activity = () => {
       .catch((err) => {
         console.log(err);
       });
-    Swal.fire({
-      icon: "success",
-      html: '<span className="font-medium">Berhasil menambah activity</span>',
-      showConfirmButton: false,
-      timer: 1000,
-    });
   };
 
   const openEdit = (id) => {

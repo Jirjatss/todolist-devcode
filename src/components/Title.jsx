@@ -40,7 +40,7 @@ const Title = (props) => {
   return (
     <>
       <div className="flex justify-between items-center w-full py-12 lg:px-16 px-8">
-        <div className="font-bold text-4xl flex" data-cy="activity-title">
+        <div className="font-bold text-4xl flex" data-cy="header-title">
           <span className="mr-2 cursor-pointer" onClick={props.back}>
             {props.button}
           </span>
@@ -56,6 +56,7 @@ const Title = (props) => {
                 <input
                   type="text"
                   id="item-title"
+                  data-cy="todo-title"
                   className="bg-transparent border-b-2 font-bold lg:text-2xl sm:text-sm lg:w-96 md:w-96 w-44 h-8 rounded-lg"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
