@@ -27,7 +27,6 @@ const Activity = () => {
   function handledelete(id, title) {
     axios.delete(`https://todo.api.devcode.gethired.id/activity-groups/${id}`).then((data) => {
       dispatch(getDataTodos(data));
-      console.log(data);
     });
     dispatch(getDataTodos(todos));
   }
@@ -71,7 +70,6 @@ const Activity = () => {
               {todos.map((el) => {
                 return (
                   <>
-                    <input type="checkbox" id="cancel-delete" className="modal-toggle" data-cy="modal-delete-cancel-button" />
                     <div key={el.id} id={el.id}>
                       <div className="mx-auto py-2 w-full px-4 relative">
                         <div className="p-6 w-full lg:w-full h-56 bg-white rounded-xl border border-gray-200 shadow-xl inline-flex flex-col justify-between cursor-pointer" onClick={() => openEdit(el.id)}>
@@ -97,7 +95,7 @@ const Activity = () => {
                         <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
                         <h3 className="font-bold text-lg text-center">"{el.title}"</h3>
                         <div className="modal-action grid grid-cols-2 px-10">
-                          <label htmlFor="cancel-delete" onClick={() => setModal(false)} className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
+                          <label onClick={() => setModal(false)} className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
                             Batal
                           </label>
                           <label htmlFor={`information${el.id}`} className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => handledelete(el.id, setModal(false))}>
