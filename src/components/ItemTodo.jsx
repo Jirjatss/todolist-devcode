@@ -35,7 +35,7 @@ const ItemTodo = (props, setData) => {
           </div>
         </div>
       </div>
-      <input type="checkbox" id={`delete${props.id}`} data-cy="modal-delete" className={modal ? "modal-toggle" : "hidden"} />
+      <input type="checkbox" id={`delete${props.id}`} data-cy="todo-item-delete-button" className={modal ? "modal-toggle" : "hidden"} />
       <label htmlFor={`delete${props.id}`} className="modal cursor-pointer">
         <label className="modal-box relative bg-white" htmlFor="">
           <div className="text-center text-7xl mb-5">⚠️</div>
