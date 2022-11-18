@@ -49,7 +49,7 @@ const Title = (props) => {
           ) : (
             <>
               {editTitle === false ? (
-                <span className="cursor-pointer text-2xl" onClick={() => setEditTitle(true)}>
+                <span className="cursor-pointer text-2xl" data-cy="todo-title" onClick={() => setEditTitle(true)}>
                   {title} <span>📝</span>
                 </span>
               ) : (

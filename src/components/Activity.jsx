@@ -99,7 +99,7 @@ const Activity = () => {
                           </p>
                         </div>
                       </div>
-                      <button htmlFor="my-modal" className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute right-8 bottom-7" data-cy="activity-item-delete-button" onClick={() => handledelete(el.id, el.title)}>
+                      <button htmlFor="my-modal" className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute right-8 bottom-7" data-cy="modal-delete" onClick={() => handledelete(el.id, el.title)}>
                         <Trash />
                       </button>
                     </div>
