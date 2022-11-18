@@ -69,21 +69,23 @@ const Activity = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-4 px-4" data-cy="activity-item">
               {todos.map((el) => {
                 return (
-                  <div key={el.id} id={el.id}>
-                    <div className="mx-auto py-2 w-full px-4 relative">
-                      <div className="p-6 w-full lg:w-full h-56 bg-white rounded-xl border border-gray-200 shadow-xl inline-flex flex-col justify-between cursor-pointer" onClick={() => openEdit(el.id)}>
-                        <h1 className="mb-2 text-xl font-bold" data-cy="activity-item-title">
-                          {el.title}
-                        </h1>
-                        <div className="flex flex-row justify-between items-center">
-                          <p className=" lg:font-medium text-gray-700 text-sm" data-cy="activity-item-date">
-                            {dateFunc(el.created_at)}
-                          </p>
+                  <>
+                    <div key={el.id} id={el.id}>
+                      <div className="mx-auto py-2 w-full px-4 relative">
+                        <div className="p-6 w-full lg:w-full h-56 bg-white rounded-xl border border-gray-200 shadow-xl inline-flex flex-col justify-between cursor-pointer" onClick={() => openEdit(el.id)}>
+                          <h1 className="mb-2 text-xl font-bold" data-cy="activity-item-title">
+                            {el.title}
+                          </h1>
+                          <div className="flex flex-row justify-between items-center">
+                            <p className=" lg:font-medium text-gray-700 text-sm" data-cy="activity-item-date">
+                              {dateFunc(el.created_at)}
+                            </p>
+                          </div>
                         </div>
+                        <label htmlFor="modal-delete" className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute right-8 bottom-7" data-cy="activity-item-delete-button" onClick={() => setModal(true)}>
+                          <Trash />
+                        </label>
                       </div>
-                      <label htmlFor="modal-delete" className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute right-8 bottom-7" data-cy="activity-item-delete-button" onClick={() => setModal(true)}>
-                        <Trash />
-                      </label>
                     </div>
                     <input type="checkbox" id="modal-delete" data-cy="modal-delete" className={modal ? "modal-toggle" : "hidden"} />
                     <label htmlFor="modal-delete" className="modal cursor-pointer">
@@ -110,7 +112,7 @@ const Activity = () => {
                         </h3>
                       </label>
                     </label>
-                  </div>
+                  </>
                 );
               })}
             </div>
