@@ -33,8 +33,8 @@ const EditActivity = () => {
     return;
   };
 
-  const getEditdata = () => {
-    axios
+  const getEditdata = async () => {
+    await axios
       .get(`https://todo.api.devcode.gethired.id/activity-groups${id}`)
       .then((response) => {
         setActivity(response.data);
@@ -75,8 +75,8 @@ const EditActivity = () => {
     setData([]);
   };
 
-  const getItemsList = () => {
-    axios
+  const getItemsList = async () => {
+    await axios
       .get(`https://todo.api.devcode.gethired.id/activity-groups/${params.id}`)
       .then((res) => {
         setItem(res.data);
@@ -130,7 +130,7 @@ const EditActivity = () => {
     <div className="bg-white h-screen text-black font-signika" data-cy="edit-activity">
       <Nav />
       <div key={activity.id} id={`detail/(activity.id)`} className="bg-white">
-        <Title title={activity.title} back={backPath} button={<ArrowLeft />} />
+        <Title title={activity.title} back={backPath} button={<ArrowLeft />} data_cy={"todo-add-button"} sort={"todo-sort-button"} />
         <div className="lg:px-16 px-2">
           {data1 == 0 && (
             <>
