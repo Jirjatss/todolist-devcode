@@ -81,29 +81,29 @@ const Activity = () => {
                           </p>
                         </div>
                       </div>
-                      <label htmlFor={`del${el.id}`} className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute right-8 bottom-7" data-cy="activity-item-delete-button" onClick={() => setModal(true)}>
+                      <label htmlFor="modal-delete" className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute right-8 bottom-7" data-cy="activity-item-delete-button" onClick={() => setModal(true)}>
                         <Trash />
                       </label>
                     </div>
-                    <input type="checkbox" id={`del${el.id}`} data-cy="modal-delete" className={modal ? "modal-toggle" : "hidden"} />
-                    <label htmlFor={`del${el.id}`} className="modal cursor-pointer">
+                    <input type="checkbox" id="modal-delete" data-cy="modal-delete" className={modal ? "modal-toggle" : "hidden"} />
+                    <label htmlFor="modal-delete" className="modal cursor-pointer">
                       <label className="modal-box relative bg-white">
                         <div className="text-center text-7xl mb-5">⚠️</div>
                         <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
                         <h3 className="font-bold text-lg text-center">"{el.title}"</h3>
                         <div className="modal-action grid grid-cols-2 px-10">
-                          <label htmlFor={`del${el.id}`} className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button" onClick={() => setModal(!modal)}>
+                          <label htmlFor="modal-delete" className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button" onClick={() => setModal(!modal)}>
                             Batal
                           </label>
-                          <label htmlFor={`info${el.id}`} className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" data-cy="modal-delete-confirm-button" onClick={() => handledelete(el.id, setModal(!modal))}>
+                          <label htmlFor="modal-informasi" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" data-cy="modal-delete-confirm-button" onClick={() => handledelete(el.id, setModal(!modal))}>
                             Hapus
                           </label>
                         </div>
                       </label>
                     </label>
 
-                    <input type="checkbox" id={`info${el.id}`} className="modal-toggle" data-cy="modal-information" />
-                    <label htmlFor={`info${el.id}`} className="modal cursor-pointer" data-cy="modal-information">
+                    <input type="checkbox" id="modal-informasi" className="modal-toggle" data-cy="modal-information" />
+                    <label htmlFor="modal-informasi" className="modal cursor-pointer" data-cy="modal-information">
                       <label className="modal-box relative  bg-white" htmlFor="">
                         <h3 className="text-lg">
                           <span>✔️</span> Activity Berhasil dihapus
