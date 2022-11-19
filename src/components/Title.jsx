@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Plus, SortUp } from "react-bootstrap-icons";
+import { Plus } from "react-bootstrap-icons";
 
 const CekPath = () => {
   const location = useLocation();
@@ -68,7 +68,16 @@ const Title = (props) => {
             </>
           )}
         </div>
-        {path === "" ? (
+        <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
+          <span>
+            <Plus size={30} color={"white"} className="-mr-2" />
+          </span>
+          <span className="text-white">
+            <span className="hidden lg:block">Tambah</span>
+          </span>
+        </label>
+      </div>
+      {/* {path === "" ? (
           <>
             <label htmlFor="">
               <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
@@ -99,8 +108,7 @@ const Title = (props) => {
               </label>
             </label>
           </>
-        )}
-      </div>
+        )} */}
     </>
   );
 };
