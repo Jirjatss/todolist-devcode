@@ -92,6 +92,7 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
           <button
             id="dropdownDefault"
             data-dropdown-toggle="dropdown"
+            data-cy="modal-add-priority-dropdown"
             className=" bg-white input border-primary outline-none ring-0 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center mt-2 w-44 relative"
             type="button"
             onClick={() => setOpenDropdwon(!openDropdown)}
@@ -112,7 +113,7 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
           {openDropdown ? (
             <>
               <div id="dropdown" className="z-10 w-44 bg-white rounded border border-primary mt-2 " data-cy="modal-add-priority-dropdown">
-                <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault" tabIndex={0}>
                   {priorityOption.map((el) => {
                     return (
                       <button className="py-2 px-4 flex hover:bg-slate-200 w-full cursor-pointer" value={el.value} key={el.value} onClick={() => setPriority(el.value, setOpenDropdwon(false), setColor(el.color))}>
