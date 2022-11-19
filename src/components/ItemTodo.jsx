@@ -41,7 +41,7 @@ const ItemTodo = (props, setData) => {
               <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
               <h3 className="font-bold text-lg text-center">"{props.title}"</h3>
               <div className="modal-action grid grid-cols-2 px-10">
-                <label onClick={() => setModal(false)} className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
+                <label htmlFor="deltodo" className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
                   Batal
                 </label>
                 <label htmlFor="infotodo" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => props.del(props.id, setModal(false))} data-cy="modal-delete-confirm-button">
