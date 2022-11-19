@@ -112,11 +112,17 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
           </button>
           {openDropdown ? (
             <>
-              <div id="dropdown" className="z-10 w-44 bg-white rounded border border-primary mt-2 " data-cy="modal-add-priority-item">
+              <div id="dropdown" className="z-10 w-44 bg-white rounded border border-primary mt-2 ">
                 <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault" tabIndex={0}>
                   {priorityOption.map((el) => {
                     return (
-                      <button className="py-2 px-4 flex hover:bg-slate-200 w-full cursor-pointer" value={el.value} key={el.value} onClick={() => setPriority(el.value, setOpenDropdwon(false), setColor(el.color))}>
+                      <button
+                        className="py-2 px-4 flex hover:bg-slate-200 w-full cursor-pointer"
+                        data-cy="modal-add-priority-item"
+                        value={el.value}
+                        key={el.value}
+                        onClick={() => setPriority(el.value, setOpenDropdwon(false), setColor(el.color))}
+                      >
                         <a className="flex">
                           <span className="block rounded-full h-4 w-4 mt-1 mr-3 font-normal" style={{ backgroundColor: `${el.color}` }}></span>
                           {el.value}
