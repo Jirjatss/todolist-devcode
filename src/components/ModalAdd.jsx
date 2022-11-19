@@ -112,7 +112,7 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
           </button>
           {openDropdown ? (
             <>
-              <div id="dropdown" className="z-10 w-44 bg-white rounded border border-primary mt-2 " data-cy="modal-add-priority-dropdown">
+              <div id="dropdown" className="z-10 w-44 bg-white rounded border border-primary mt-2 " data-cy="modal-add-priority-item">
                 <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault" tabIndex={0}>
                   {priorityOption.map((el) => {
                     return (
