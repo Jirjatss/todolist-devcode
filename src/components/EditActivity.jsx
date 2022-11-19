@@ -19,6 +19,7 @@ const EditActivity = () => {
   const [data, setData] = useState([]);
   const params = useParams();
   const data1 = item.todo_items;
+  const [modal, setModal] = useState(false);
 
   const setActiveStatus = async (id, isActive) => {
     const request = {
@@ -53,12 +54,7 @@ const EditActivity = () => {
     const headers = {
       "Content-Type": "application/json",
     };
-    Swal.fire({
-      icon: "success",
-      html: '<span className="font-medium">List berhasil ditambahkan</span>',
-      showConfirmButton: false,
-      timer: 1000,
-    });
+
     await axios
       .post(`https://todo.api.devcode.gethired.id/todo-items`, request, headers)
       .then((response) => {
@@ -70,7 +66,7 @@ const EditActivity = () => {
 
   const deltodo = (id, title) => {
     axios.delete(`https://todo.api.devcode.gethired.id/todo-items/${id}`).then((res) => {
-      setItem(res.data);
+      return setItem(res.data);
     });
     setData([]);
   };
@@ -143,8 +139,33 @@ const EditActivity = () => {
               {data1.map((el) => {
                 return (
                   <>
-                    <ItemTodo key={el.id} id={el.id} is_active={el.is_active} title={el.title} priority={el.priority} del={() => deltodo(el.id, el.title)} status={() => setActiveStatus(el.id, el.is_active)} setData={setData} props={el} />
-                    <ModalEdit key={el.id} id={el.id} title={el.title} priority={el.priority} />
+                    <ItemTodo key={el.id} id={el.id} is_active={el.is_active} title={el.title} priority={el.priority} del={deltodo} status={() => setActiveStatus(el.id, el.is_active)} setData={setData} props={el} setModal={setModal} />
+                    {/* <ModalEdit key={el.id} id={el.id} title={el.title} priority={el.priority} /> */}
+
+                    <input type="checkbox" id="deltodo" data-cy="modal-delete" className={modal ? "modal-toggle" : "hidden"} />
+                    <label htmlFor="deltodo" className="modal cursor-pointer" data-cy="todo-item-delete-button">
+                      <label className="modal-box relative bg-white" htmlFor="">
+                        <div className="text-center text-7xl mb-5">⚠️</div>
+                        <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
+                        <h3 className="font-bold text-lg text-center">"{el.title}"</h3>
+                        <div className="modal-action grid grid-cols-2 px-10">
+                          <label htmlFor="deltodo" className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
+                            Batal
+                          </label>
+                          <label htmlFor="infotodo" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => deltodo(el.id, setModal(false))} data-cy="modal-delete-confirm-button">
+                            Hapus
+                          </label>
+                        </div>
+                      </label>
+                    </label>
+                    <input type="checkbox" id="infotodo" className="modal-toggle" data-cy="modal-information" />
+                    <label htmlFor="infotodo" className="modal cursor-pointer" data-cy="modal-information">
+                      <label className="modal-box relative  bg-white" htmlFor="">
+                        <h3 className="text-lg">
+                          <span>✔️</span> "{el.title}" Berhasil dihapus
+                        </h3>
+                      </label>
+                    </label>
                   </>
                 );
               })}

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Plus, SortUp } from "react-bootstrap-icons";
+import { Plus, SortAlphaDown, SortDown, SortUp } from "react-bootstrap-icons";
 
 const CekPath = () => {
   const location = useLocation();
   return location.pathname;
 };
-const Title = (props) => {
+const Title = (props, setSortValue, sortValue) => {
   const [editTitle, setEditTitle] = useState(false);
   const [path, setPath] = useState();
   const currentPath = CekPath().substring(CekPath().lastIndexOf("/") + 1);
@@ -26,9 +26,34 @@ const Title = (props) => {
       // return props.title(response.title);
     });
     setEditTitle(false);
-
-    return;
   };
+  const sortOption = [
+    {
+      label: "Terbaru",
+      value: "terbaru",
+      icon: <SortDown />,
+    },
+    {
+      label: "Terlama",
+      value: "terlama",
+      icon: <SortUp />,
+    },
+    {
+      label: "A-Z",
+      value: "a_z",
+      icon: <SortAlphaDown />,
+    },
+    {
+      label: "Z-A",
+      value: "z_a",
+      icon: <SortAlphaDown />,
+    },
+    {
+      label: "Belum Selesai",
+      value: "belum_selesai",
+      icon: "✔️",
+    },
+  ];
 
   useEffect(() => {
     setEditTitle(false);
@@ -81,11 +106,31 @@ const Title = (props) => {
           </>
         ) : (
           <div className="inline-flex">
-            <label data-cy="todo-sort-button" className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case mr-2 px-6 lg:px-5 rounded-full" type="button">
-              <span>
-                <SortUp size={30} color={"white"} className="-mr-2" />
-              </span>
-            </label>
+            <div className="dropdown dropdown-end">
+              <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 mr-2 rounded-full" type="button" data-cy="todo-sort-button" tabIndex={0}>
+                <span>
+                  <SortUp size={30} color={"white"} />
+                </span>
+              </label>
+              <ul tabIndex={0} className="dropdown-content menu shadow bg-white rounded-md w-52">
+                {sortOption.map((sortItem) => (
+                  <li
+                    key={sortItem.value}
+                    className={sortValue == sortItem.value ? "bordered" : ""}
+                    onClick={() => {
+                      setSortValue(sortItem.value);
+                      document.activeElement.blur();
+                    }}
+                    data-cy="sort-selection"
+                  >
+                    <a>
+                      <i className={sortItem.icon}></i>
+                      {sortItem.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
               <span>
                 <Plus size={30} color={"white"} className="-mr-2" />
@@ -102,3 +147,10 @@ const Title = (props) => {
 };
 
 export default Title;
+{
+  /* <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case mr-2 px-6 lg:px-5 rounded-full" type="button" data-cy={props.sort} htmlFor="mymodal2">
+              <span>
+                <SortUp size={30} color={"white"} className="-mr-2" />
+              </span>
+            </label> */
+}

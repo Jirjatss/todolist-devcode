@@ -68,7 +68,7 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
   return (
     <div className="relative  bg-white">
       <input type="checkbox" id="mymodal2" className="modal-toggle" />
-      <div className="modal" data-cy="modal-add">
+      <div className="modal" data-cy="modal-add" key={data.id}>
         <div className="modal-box bg-white border border-b-slate-400">
           <label htmlFor="mymodal2" className="btn btn-sm btn-circle absolute right-2 bg-red-600 top-2 text-white hover:bg-red-700 border-none">
             ✕
@@ -137,14 +137,14 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
             <></>
           )}
 
-          <div className="modal-action" data-cy="modal-add-save-button">
+          <div className="">
             {list === "" ? (
-              <label disabled className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold" data-cy="modal-add-save-button">
-                Save
+              <label disabled className="modal-action bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold w-1/4" data-cy="modal-add-save-button">
+                <span className="block mx-auto">Save</span>
               </label>
             ) : (
-              <label className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold" htmlFor="mymodal2" onClick={() => editor()}>
-                Save
+              <label className="modal-action bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold w-1/4" htmlFor="mymodal2" onClick={() => editor()}>
+                <span className="block mx-auto">Save</span>
               </label>
             )}
           </div>
