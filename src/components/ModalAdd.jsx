@@ -137,19 +137,17 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
             <></>
           )}
 
-          {list === null || priority === "Choose Priority" ? (
-            <div className="modal-action" data-cy="modal-add-save-button">
-              <label className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold" disabled>
+          <div className="modal-action" data-cy="modal-add-save-button">
+            {list === "" ? (
+              <button className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold" disabled>
                 Save
-              </label>
-            </div>
-          ) : (
-            <div className="modal-action" data-cy="modal-add-save-button">
-              <label className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold" htmlFor="mymodal2" onClick={() => editor()}>
+              </button>
+            ) : (
+              <button className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold" htmlFor="mymodal2" onClick={() => editor()}>
                 Save
-              </label>
-            </div>
-          )}
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
