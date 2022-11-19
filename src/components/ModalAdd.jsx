@@ -120,7 +120,7 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
                         className="py-2 px-4 flex hover:bg-slate-200 w-full cursor-pointer"
                         data-cy="modal-add-priority-item"
                         value={el.value}
-                        key={el.value}
+                        key={el.id}
                         onClick={() => setPriority(el.value, setOpenDropdwon(false), setColor(el.color))}
                       >
                         <a className="flex">
@@ -137,15 +137,15 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
             <></>
           )}
 
-          <div className="modal-action" data-cy="modal-add-save-button">
+          <div>
             {list === null ? (
-              <button className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold" disabled>
+              <button disabled className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold modal-action" data-cy="modal-add-save-button">
                 Save
               </button>
             ) : (
-              <label className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold" htmlFor="mymodal2" onClick={() => editor()}>
+              <button className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold modal-action" onClick={() => editor()}>
                 Save
-              </label>
+              </button>
             )}
           </div>
         </div>
