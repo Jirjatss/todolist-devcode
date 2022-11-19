@@ -95,7 +95,7 @@ const Title = (props, setSortValue, sortValue) => {
         </div>
 
         <div className="inline-flex">
-          <div className="dropdown-end">
+          {/* <div className="dropdown-end">
             <label className={props.tampil ? "btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 mr-2 rounded-full" : "hidden"} type="button" data-cy="todo-sort-button" tabIndex={0}>
               <span>
                 <SortUp size={30} color={"white"} />
@@ -119,7 +119,7 @@ const Title = (props, setSortValue, sortValue) => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
           <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
             <span>
               <Plus size={30} color={"white"} className="-mr-2" />
