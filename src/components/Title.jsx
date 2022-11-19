@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Plus } from "react-bootstrap-icons";
+import { Plus, SortUp } from "react-bootstrap-icons";
 
 const CekPath = () => {
   const location = useLocation();
@@ -68,47 +68,35 @@ const Title = (props) => {
             </>
           )}
         </div>
-        <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
-          <span>
-            <Plus size={30} color={"white"} className="-mr-2" />
-          </span>
-          <span className="text-white">
-            <span className="hidden lg:block">Tambah</span>
-          </span>
-        </label>
-      </div>
-      {/* {path === "" ? (
+        {path === "" ? (
           <>
-            <label htmlFor="">
-              <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
-                <span>
-                  <Plus size={30} color={"white"} className="-mr-2" />
-                </span>
-                <span className="text-white">
-                  <span className="hidden lg:block">Tambah</span>
-                </span>
-              </label>
-            </label>
+            <button className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function}>
+              <span>
+                <Plus size={30} color={"white"} className="-mr-2" />
+              </span>
+              <span className="text-white">
+                <span className="hidden lg:block">Tambah</span>
+              </span>
+            </button>
           </>
         ) : (
           <>
-            <label htmlFor="">
-              <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case mr-2 px-6 lg:px-5 rounded-full" type="button" data-cy={props.sort} htmlFor="mymodal2">
-                <span>
-                  <SortUp size={30} color={"white"} className="-mr-2" />
-                </span>
-              </label>
-              <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
-                <span>
-                  <Plus size={30} color={"white"} className="-mr-2" />
-                </span>
-                <span className="text-white">
-                  <span className="hidden lg:block">Tambah</span>
-                </span>
-              </label>
+            <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case mr-2 px-6 lg:px-5 rounded-full" type="button" data-cy={props.sort} htmlFor="mymodal2">
+              <span>
+                <SortUp size={30} color={"white"} className="-mr-2" />
+              </span>
+            </label>
+            <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
+              <span>
+                <Plus size={30} color={"white"} className="-mr-2" />
+              </span>
+              <span className="text-white">
+                <span className="hidden lg:block">Tambah</span>
+              </span>
             </label>
           </>
-        )} */}
+        )}
+      </div>
     </>
   );
 };
