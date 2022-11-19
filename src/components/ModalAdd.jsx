@@ -137,15 +137,15 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
             <></>
           )}
 
-          <div>
-            {list === null ? (
-              <button disabled className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold modal-action" data-cy="modal-add-save-button">
+          <div className="modal-action" data-cy="modal-add-save-button">
+            {list === "" ? (
+              <label disabled className="bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold" data-cy="modal-add-save-button">
                 Save
-              </button>
+              </label>
             ) : (
-              <button className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold modal-action" onClick={() => editor()}>
+              <label className="bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold" htmlFor="mymodal2" onClick={() => editor()}>
                 Save
-              </button>
+              </label>
             )}
           </div>
         </div>
