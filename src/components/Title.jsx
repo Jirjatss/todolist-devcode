@@ -81,7 +81,7 @@ const Title = (props) => {
           </>
         ) : (
           <div className="inline-flex">
-            <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case mr-2 px-6 lg:px-5 rounded-full" type="button">
+            <label data-cy="todo-sort-button" className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case mr-2 px-6 lg:px-5 rounded-full" type="button">
               <span>
                 <SortUp size={30} color={"white"} className="-mr-2" />
               </span>
