@@ -93,54 +93,42 @@ const Title = (props, setSortValue, sortValue) => {
             </>
           )}
         </div>
-        {path === "" ? (
-          <>
-            <button className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function}>
+
+        <div className="inline-flex">
+          <div className="dropdown dropdown-end">
+            <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 mr-2 rounded-full" type="button" data-cy="todo-sort-button" tabIndex={0}>
               <span>
-                <Plus size={30} color={"white"} className="-mr-2" />
-              </span>
-              <span className="text-white">
-                <span className="hidden lg:block">Tambah</span>
-              </span>
-            </button>
-          </>
-        ) : (
-          <div className="inline-flex">
-            <div className="dropdown dropdown-end">
-              <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 mr-2 rounded-full" type="button" data-cy="todo-sort-button" tabIndex={0}>
-                <span>
-                  <SortUp size={30} color={"white"} />
-                </span>
-              </label>
-              <ul tabIndex={0} className="dropdown-content menu shadow bg-white rounded-md w-52">
-                {sortOption.map((sortItem) => (
-                  <li
-                    key={sortItem.value}
-                    className={sortValue == sortItem.value ? "bordered" : ""}
-                    onClick={() => {
-                      setSortValue(sortItem.value);
-                      document.activeElement.blur();
-                    }}
-                    data-cy="sort-selection"
-                  >
-                    <a>
-                      <i className={sortItem.icon}></i>
-                      {sortItem.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
-              <span>
-                <Plus size={30} color={"white"} className="-mr-2" />
-              </span>
-              <span className="text-white">
-                <span className="hidden lg:block">Tambah</span>
+                <SortUp size={30} color={"white"} />
               </span>
             </label>
+            <ul tabIndex={0} className="dropdown-content menu shadow bg-white rounded-md w-52">
+              {sortOption.map((sortItem) => (
+                <li
+                  key={sortItem.value}
+                  className={sortValue == sortItem.value ? "bordered" : ""}
+                  onClick={() => {
+                    setSortValue(sortItem.value);
+                    document.activeElement.blur();
+                  }}
+                  data-cy="sort-selection"
+                >
+                  <a>
+                    <i className={sortItem.icon}></i>
+                    {sortItem.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-        )}
+          <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
+            <span>
+              <Plus size={30} color={"white"} className="-mr-2" />
+            </span>
+            <span className="text-white">
+              <span className="hidden lg:block">Tambah</span>
+            </span>
+          </label>
+        </div>
       </div>
     </>
   );
