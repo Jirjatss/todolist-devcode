@@ -10,7 +10,7 @@ const ItemTodo = (props, setData) => {
           <div className="inline-flex items-center gap-4">
             <input
               type="checkbox"
-              data-cy="modal-add-priority-dropdown"
+              data-cy="todo-item-checkbox"
               id={"checkbox-" + props.id}
               className="checkbox  outline-none checkbox-primary rounded-none"
               onChange={() => {

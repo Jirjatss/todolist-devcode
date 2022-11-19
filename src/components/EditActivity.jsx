@@ -148,9 +148,9 @@ const EditActivity = () => {
                   </>
                 );
               })}
-              <ModalAdd data={data} createTodo={createTodo} setData={setData} />
             </>
           )}
+          <ModalAdd data={data} createTodo={createTodo} setData={setData} />
         </div>
       </div>
     </div>
