@@ -68,47 +68,39 @@ const Title = (props) => {
             </>
           )}
         </div>
-        <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
-          <span>
-            <Plus size={30} color={"white"} className="-mr-2" />
-          </span>
-          <span className="text-white">
-            <span className="hidden lg:block">Tambah</span>
-          </span>
-        </label>
+        {path === "" ? (
+          <>
+            <label htmlFor="">
+              <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
+                <span>
+                  <Plus size={30} color={"white"} className="-mr-2" />
+                </span>
+                <span className="text-white">
+                  <span className="hidden lg:block">Tambah</span>
+                </span>
+              </label>
+            </label>
+          </>
+        ) : (
+          <>
+            <label htmlFor="">
+              <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case mr-2 px-6 lg:px-5 rounded-full" type="button" data-cy={props.sort} htmlFor="mymodal2">
+                <span>
+                  <SortUp size={30} color={"white"} className="-mr-2" />
+                </span>
+              </label>
+              <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
+                <span>
+                  <Plus size={30} color={"white"} className="-mr-2" />
+                </span>
+                <span className="text-white">
+                  <span className="hidden lg:block">Tambah</span>
+                </span>
+              </label>
+            </label>
+          </>
+        )}
       </div>
-      {path === "" ? (
-        <>
-          <label htmlFor="">
-            <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
-              <span>
-                <Plus size={30} color={"white"} className="-mr-2" />
-              </span>
-              <span className="text-white">
-                <span className="hidden lg:block">Tambah</span>
-              </span>
-            </label>
-          </label>
-        </>
-      ) : (
-        <>
-          <label htmlFor="">
-            <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case mr-2 px-6 lg:px-5 rounded-full" type="button" data-cy={props.sort} htmlFor="mymodal2">
-              <span>
-                <SortUp size={30} color={"white"} className="-mr-2" />
-              </span>
-            </label>
-            <label className="btn bg-sky-500 hover:bg-sky-600 border-none gap-2 h-2 font-semibold text-base normal-case px-6 lg:px-5 rounded-full" type="button" data-cy={props.data_cy} onClick={props.function} htmlFor="mymodal2">
-              <span>
-                <Plus size={30} color={"white"} className="-mr-2" />
-              </span>
-              <span className="text-white">
-                <span className="hidden lg:block">Tambah</span>
-              </span>
-            </label>
-          </label>
-        </>
-      )}
     </>
   );
 };
