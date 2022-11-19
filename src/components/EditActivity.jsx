@@ -11,6 +11,8 @@ import Swal from "sweetalert2";
 import ModalEdit from "./ModalEdit";
 
 const EditActivity = () => {
+  const tampil = true;
+  const [tampil1, setTampil1] = useState(false);
   const [activity, setActivity] = useState([]);
   const [sortValue, setSortValue] = useState("terbaru");
   const id = window.location.pathname;
@@ -130,7 +132,7 @@ const EditActivity = () => {
     <div className="bg-white h-screen text-black font-signika" data-cy="edit-activity">
       <Nav />
       <div key={activity.id} id={`detail/(activity.id)`} className="bg-white">
-        <Title title={activity.title} back={backPath} button={<ArrowLeft />} data_cy={"todo-add-button"} sort={"todo-sort-button"} />
+        <Title title={activity.title} back={backPath} button={<ArrowLeft />} data_cy={"todo-add-button"} sort={"todo-sort-button"} tampil={tampil} tampil1={tampil1} />
         <div className="lg:px-16 px-2">
           {data1 == 0 && (
             <>
