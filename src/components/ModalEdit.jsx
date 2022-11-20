@@ -119,14 +119,14 @@ const ModalEdit = (props) => {
             <></>
           )}
 
-          <div className="">
-            {title === null ? (
-              <label disabled className="modal-action bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold w-1/4" data-cy="modal-add-save-button">
-                <span className="block mx-auto">Save</span>
-              </label>
+          <div className="flex justify-end mt-6">
+            {title === "" ? (
+              <button disabled className="btn btn-primary py-3 px-9 text-white" data-cy="modal-add-save-button">
+                Save
+              </button>
             ) : (
-              <label className="modal-action bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold w-1/4" onClick={() => editor(props.id)}>
-                <span className="block mx-auto">Save</span>
+              <label className="btn btn-primary py-3 px-9 text-white" type="submit" htmlFor="" data-cy="modal-add-save-button" onClick={() => editor(props.id)}>
+                Save
               </label>
             )}
           </div>
