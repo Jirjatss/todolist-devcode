@@ -26,8 +26,8 @@ const ItemTodo = (item, setStatus, setData) => {
   return (
     <>
       <div className="flex bg-white w-full rounded-xl border border-gray-200 shadow-xl lg:px-10 px-4 py-8 mb-2 font-signika" data-cy="todo-add-button">
-        <div className="flex flex-row justify-between items-center" data-cy="todo-item">
-          <div className="inline-flex items-center gap-4">
+        <div className="flex flex-row justify-between items-center">
+          <div className="inline-flex items-center gap-4" data-cy="todo-item">
             <input
               type="checkbox"
               data-cy="todo-item-checkbox"
