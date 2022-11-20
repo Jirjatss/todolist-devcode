@@ -63,7 +63,7 @@ const ModalAdd = ({ data, createTodo, setData }) => {
   return (
     <div className="relative  bg-white">
       <input type="checkbox" id="mymodal2" className="modal-toggle" />
-      <div className="modal" data-cy="modal-add">
+      <div className="modal">
         <div className="modal-box bg-white border border-b-slate-400">
           <label htmlFor="mymodal2" className="btn btn-sm btn-circle absolute right-2 bg-red-600 top-2 text-white hover:bg-red-700 border-none">
             ✕
@@ -137,7 +137,7 @@ const ModalAdd = ({ data, createTodo, setData }) => {
                 <span className="block mx-auto">Save</span>
               </label>
             ) : (
-              <label className="modal-action bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold w-1/4" htmlFor="mymodal2" onClick={() => editor()}>
+              <label className="modal-action bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold w-1/4" htmlFor="mymodal2" data-cy="modal-add-save-button" onClick={() => editor()}>
                 <span className="block mx-auto">Save</span>
               </label>
             )}
