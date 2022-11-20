@@ -9,10 +9,10 @@ import Title from "./Title";
 import empty from "../assets/todo-empty-state.svg";
 import Swal from "sweetalert2";
 import ModalEdit from "./ModalEdit";
+import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
+import ModalDelete from "./ModalDelete";
 
 const EditActivity = () => {
-  const tampil = true;
-  const [tampil1, setTampil1] = useState(false);
   const [activity, setActivity] = useState([]);
   const [sortValue, setSortValue] = useState("terbaru");
   const id = window.location.pathname;
@@ -21,6 +21,7 @@ const EditActivity = () => {
   const [data, setData] = useState([]);
   const params = useParams();
   const data1 = item.todo_items;
+  const [show1, setShow1] = useState(false);
 
   const setActiveStatus = async (id, isActive) => {
     const request = {
@@ -86,12 +87,30 @@ const EditActivity = () => {
       .catch((err) => console.log(err.message));
   };
 
+  const editTodo = async (id, title, priority) => {
+    const request = {
+      title,
+      priority,
+    };
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    await axios
+      .patch(`https://todo.api.devcode.gethired.id/todo-items/${id}`, request, headers)
+      .then((response) => {
+        setItem(response.data);
+      })
+      .catch((err) => console.alert(err.message));
+    await getItemsList();
+    setData([]);
+  };
+
   const backPath = () => {
     nav("/");
   };
 
   const sortedTodo = useMemo(() => {
-    let items = item?.todo_items;
+    let items = data1;
 
     function compare(a, b, sortedKey, sortedType) {
       if (sortedType === "desc") {
@@ -132,7 +151,7 @@ const EditActivity = () => {
     <div className="bg-white h-screen text-black font-signika" data-cy="edit-activity">
       <Nav />
       <div key={activity.id} id={`detail/(activity.id)`} className="bg-white">
-        <Title title={activity.title} back={backPath} button={<ArrowLeft />} data_cy={"todo-add-button"} sort={"todo-sort-button"} tampil={tampil} tampil1={tampil1} />
+        <Title item={activity} afterChange={getItemsList} setSortValue={setSortValue} sortValue={sortValue} />
         <div className="lg:px-16 px-2">
           {data1 == 0 && (
             <>
@@ -142,11 +161,12 @@ const EditActivity = () => {
 
           {data1 && (
             <>
-              {data1.map((el) => {
+              {sortedTodo.map((el) => {
                 return (
                   <>
-                    <ItemTodo key={el.id} id={el.id} is_active={el.is_active} title={el.title} priority={el.priority} del={() => deltodo(el.id, el.title)} status={() => setActiveStatus(el.id, el.is_active)} setData={setData} props={el} />
-                    <ModalEdit key={el.id} id={el.id} title={el.title} priority={el.priority} />
+                    <ItemTodo key={el.id} id={el.id} is_active={el.is_active} title={el.title} priority={el.priority} setStatus={setActiveStatus} setData={setData} del={deltodo} show={setShow1} />
+                    <ModalEdit id={el.id} title={el.title} priority={el.priority} edit={editTodo} />
+                    <ModalDelete title={el.title} id={el.id} show={show1} show1={setShow1} del={deltodo} />
                   </>
                 );
               })}

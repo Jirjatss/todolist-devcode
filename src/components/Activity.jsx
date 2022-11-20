@@ -64,7 +64,7 @@ const Activity = () => {
     <div className="bg-white font-signika">
       {todos && (
         <>
-          <Title title="Activity" function={handleAddTodo} data_cy={"activity-add-button"} />
+          <Title title="Activity" addActivity={handleAddTodo} />
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-4 px-4" data-cy="activity-item">
             {todos.map((el) => {
               return (

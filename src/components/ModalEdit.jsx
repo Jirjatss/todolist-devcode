@@ -2,25 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const ModalEdit = (props) => {
-  const [list, setList] = useState("");
   const [title, setTitle] = useState("");
   const [prioritas, setPrioritas] = useState("");
   const [openDropdown, setOpenDropdwon] = useState(false);
 
   const editor = async (id) => {
-    const request = {
-      title,
-      prioritas,
-    };
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    await axios
-      .patch(`https://todo.api.devcode.gethired.id/todo-items/${id}`, request, headers)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err.message));
+    props.edit(id, title, prioritas);
   };
 
   const priorityOption = [
@@ -56,13 +43,13 @@ const ModalEdit = (props) => {
   }, []);
 
   useEffect(() => {
-    setTitle(props.title);
+    console.log(title);
     console.log(prioritas);
   }, [title, prioritas]);
 
   return (
     <div className="relative  bg-white">
-      <input type="checkbox" id={props.id} className="modal-toggle" key={props.id} />
+      <input type="checkbox" id={props.id} className="modal-toggle" />
       <div className="modal">
         <div className="modal-box bg-white border border-b-slate-400">
           <label htmlFor={props.id} className="btn btn-sm btn-circle absolute right-2 bg-red-600 top-2 text-white hover:bg-red-700 border-none">
@@ -76,7 +63,7 @@ const ModalEdit = (props) => {
           <br />
           <input
             type="text"
-            placeholder="Tambahkan nama list item"
+            placeholder={props.title}
             data-cy="modal-edit-name-input"
             className="input border-primary outline-none ring-0 w-full rounded-md bg-white mt-2 mb-4 h-10"
             onChange={(e) => {
@@ -90,12 +77,23 @@ const ModalEdit = (props) => {
             type="button"
             onClick={() => setOpenDropdwon(!openDropdown)}
           >
-            <div
-              className={`inline-flex rounded-full h-4 w-4 mr-2 ${
-                prioritas === "very-high" ? "bg-[#ED4C5C]" : prioritas === "high" ? "bg-[#F8A541]" : prioritas === "normal" ? "bg-[#00A790]" : prioritas == "low" ? "bg-[#428BC1]" : "bg-[#8942C1]"
-              }`}
-            ></div>
-            {prioritas}
+            {!prioritas && (
+              <div
+                className={`inline-flex rounded-full h-4 w-4 mr-2 ${
+                  props.priority === "very-high" ? "bg-[#ED4C5C]" : props.priority === "high" ? "bg-[#F8A541]" : props.priority === "normal" ? "bg-[#00A790]" : props.priority == "low" ? "bg-[#428BC1]" : "bg-[#8942C1]"
+                }`}
+              ></div>
+            )}
+            {prioritas && (
+              <div
+                className={`inline-flex rounded-full h-4 w-4 mr-2 ${
+                  prioritas === "very-high" ? "bg-[#ED4C5C]" : prioritas === "high" ? "bg-[#F8A541]" : prioritas === "normal" ? "bg-[#00A790]" : prioritas == "low" ? "bg-[#428BC1]" : "bg-[#8942C1]"
+                }`}
+              ></div>
+            )}
+
+            {!prioritas && <>{props.priority}</>}
+            {prioritas && <>{prioritas}</>}
             <svg className="ml-2 w-4 h-4 absolute right-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -122,12 +120,12 @@ const ModalEdit = (props) => {
           )}
 
           <div className="">
-            {title === "" ? (
+            {title === null ? (
               <label disabled className="modal-action bg-blue-500 px-6 py-2 rounded-xl cursor-pointer font-semibold w-1/4" data-cy="modal-add-save-button">
                 <span className="block mx-auto">Save</span>
               </label>
             ) : (
-              <label className="modal-action bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold w-1/4" htmlFor="mymodal2" onClick={() => editor()}>
+              <label className="modal-action bg-blue-500 px-6 py-2 rounded-xl hover:bg-blue-600 cursor-pointer font-semibold w-1/4" onClick={() => editor(props.id)}>
                 <span className="block mx-auto">Save</span>
               </label>
             )}

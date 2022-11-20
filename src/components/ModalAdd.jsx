@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
+const ModalAdd = ({ data, createTodo, setData }) => {
   const [list, setList] = useState("");
   const [openDropdown, setOpenDropdwon] = useState(false);
   const [priority, setPriority] = useState("Priority");
   const [color, setColor] = useState("");
 
   const editor = () => {
-    if (data.id) {
-      editTodo(data.id, list, priority);
-      setData([]);
-    } else {
-      Swal.fire({
-        icon: "success",
-        html: '<span className="font-medium">Berhasil menambah List item</span>',
-        showConfirmButton: false,
-        timer: 1000,
-      });
-      createTodo(list, priority);
-      setData([]);
-    }
+    Swal.fire({
+      icon: "success",
+      html: '<span className="font-medium">Berhasil menambah List item</span>',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+    createTodo(list, priority);
+    setData([]);
   };
 
   const priorityOption = [
@@ -84,7 +79,6 @@ const ModalAdd = ({ data, createTodo, editTodo, setData }) => {
             placeholder="Tambahkan nama list item"
             data-cy="modal-add-name-input"
             className="input border-primary outline-none ring-0 w-full rounded-md bg-white mt-2 mb-4 h-10"
-            value={list}
             onChange={(e) => {
               setList(e.target.value);
             }}
