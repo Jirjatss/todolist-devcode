@@ -42,11 +42,6 @@ const ModalEdit = (props) => {
     setOpenDropdwon(false);
   }, []);
 
-  useEffect(() => {
-    console.log(title);
-    console.log(prioritas);
-  }, [title, prioritas]);
-
   return (
     <div className="relative  bg-white">
       <input type="checkbox" id={props.id} className="modal-toggle" />
@@ -87,7 +82,7 @@ const ModalEdit = (props) => {
             {prioritas && (
               <div
                 className={`inline-flex rounded-full h-4 w-4 mr-2 ${
-                  prioritas === "very-high" ? "bg-[#ED4C5C]" : prioritas === "high" ? "bg-[#F8A541]" : prioritas === "normal" ? "bg-[#00A790]" : prioritas == "low" ? "bg-[#428BC1]" : "bg-[#8942C1]"
+                  prioritas === "very-high" ? "bg-[#ED4C5C]" : prioritas === "high" ? "bg-[#F8A541]" : prioritas === "normal" ? "bg-[#00A790]" : prioritas === "low" ? "bg-[#428BC1]" : "bg-[#8942C1]"
                 }`}
               ></div>
             )}

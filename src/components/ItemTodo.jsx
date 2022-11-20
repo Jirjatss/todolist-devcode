@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Trash } from "react-bootstrap-icons";
 
-const ItemTodo = (item, setStatus, setData) => {
-  const [modal, setModal] = useState(false);
+const ItemTodo = (item, setData) => {
   const handleDel = (event) => {
     setData({
       id: item.id,
@@ -34,13 +33,13 @@ const ItemTodo = (item, setStatus, setData) => {
               id={"checkbox-" + item.id}
               className="checkbox  outline-none checkbox-primary rounded-none"
               onChange={() => {
-                setStatus((item.id, item.is_active));
+                item.status((item.id, item.is_active));
               }}
               checked={item.is_active === 0}
             />
             <div
               className={`inline-flex rounded-full h-4 w-4 ${
-                item.priority === "very-high" ? "bg-[#ED4C5C]" : item.priority === "high" ? "bg-[#F8A541]" : item.priority === "normal" ? "bg-[#00A790]" : item.priority == "low" ? "bg-[#428BC1]" : "bg-[#8942C1]"
+                item.priority === "very-high" ? "bg-[#ED4C5C]" : item.priority === "high" ? "bg-[#F8A541]" : item.priority === "normal" ? "bg-[#00A790]" : item.priority === "low" ? "bg-[#428BC1]" : "bg-[#8942C1]"
               }`}
             ></div>
             <p className={`text-md text-black ${item.is_active === 0 ? "line-through" : ""}`} data-cy="todo-item-title">
@@ -49,7 +48,7 @@ const ItemTodo = (item, setStatus, setData) => {
             <label className={`cursor-pointer ${item.is_active === 0 ? "hidden" : ""}`} htmlFor={item.id}>
               📝
             </label>
-            <label htmlFor="deltodo" onClick={() => item.show(true)} className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute lg:right-24 right-6" data-cy="todo-item-delete-button">
+            <label htmlFor={`del${item.id}`} className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute lg:right-24 right-6" data-cy="todo-item-delete-button">
               <Trash />
             </label>
           </div>

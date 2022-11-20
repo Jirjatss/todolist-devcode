@@ -51,14 +51,9 @@ const ModalAdd = ({ data, createTodo, setData }) => {
   }, []);
 
   useEffect(() => {
-    if (data.edit) {
-      setList(data.title);
-      setPriority(data.priority);
-      return;
-    }
     setList("");
     setPriority("Choose Priority");
-  }, [data]);
+  }, []);
 
   return (
     <div className="relative  bg-white">

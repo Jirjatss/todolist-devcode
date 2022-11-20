@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getDataTodos } from "../store/actions/todosAction";
 import { Trash } from "react-bootstrap-icons";
@@ -7,11 +7,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Title from "./Title";
 import { useNavigate } from "react-router-dom";
+import ModalDelete from "./ModalDelete";
 
 const Activity = () => {
   const dispatch = useDispatch();
-  const [modal, setModal] = useState();
-
   const { todos } = useSelector((state) => state.todo);
   const nav = useNavigate();
 
@@ -25,6 +24,12 @@ const Activity = () => {
   }
 
   function handledelete(id) {
+    Swal.fire({
+      icon: "success",
+      html: '<span className="font-medium">Berhasil menghapus Activity</span>',
+      showConfirmButton: false,
+      timer: 1000,
+    });
     axios.delete(`https://todo.api.devcode.gethired.id/activity-groups/${id}`).then((data) => {
       dispatch(getDataTodos(data));
     });
@@ -33,6 +38,12 @@ const Activity = () => {
 
   const handleAddTodo = (event) => {
     event.preventDefault();
+    Swal.fire({
+      icon: "success",
+      html: '<span className="font-medium">Berhasil menambah Activity</span>',
+      showConfirmButton: false,
+      timer: 1000,
+    });
     const request = {
       title: "New Activity",
       email: "sajadhijir@gmail.com",
@@ -58,10 +69,10 @@ const Activity = () => {
 
   useEffect(() => {
     dispatch(getDataTodos());
-  }, []);
+  }, [dispatch]);
 
   return (
-    <div className="bg-white font-signika">
+    <div className="bg-white font-signika px-10">
       {todos && (
         <>
           <Title title="Activity" addActivity={handleAddTodo} />
@@ -81,43 +92,19 @@ const Activity = () => {
                           </p>
                         </div>
                       </div>
-                      <label htmlFor="modal-delete" className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute right-8 bottom-7" data-cy="activity-item-delete-button" onClick={() => setModal(true)}>
+                      <label htmlFor={`del${el.id}`} className="btn modal-button btn-circle btn-sm btn-outline btn-error absolute right-8 bottom-7" data-cy="activity-item-delete-button">
                         <Trash />
                       </label>
                     </div>
+                    <ModalDelete title={el.title} id={el.id} del={() => handledelete(el.id)} />
                   </div>
-                  <input type="checkbox" id="modal-delete" data-cy="modal-delete" className={modal ? "modal-toggle" : "hidden"} />
-                  <label htmlFor="modal-delete" className="modal cursor-pointer">
-                    <label className="modal-box relative bg-white">
-                      <div className="text-center text-7xl mb-5">⚠️</div>
-                      <h3 className="text-lg text-center">Apakah anda yakin menghapus activity?</h3>
-                      <h3 className="font-bold text-lg text-center">"{el.title}"</h3>
-                      <div className="modal-action grid grid-cols-2 px-10">
-                        <label htmlFor="modal-delete" className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button" onClick={() => setModal(!modal)}>
-                          Batal
-                        </label>
-                        <label htmlFor="modal-delete" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" data-cy="modal-delete-confirm-button" onClick={() => handledelete(el.id, setModal(!modal))}>
-                          Hapus
-                        </label>
-                      </div>
-                    </label>
-                  </label>
-
-                  <input type="checkbox" id="modal-informasi" className="modal-toggle" data-cy="modal-information" />
-                  <label htmlFor="modal-informasi" className="modal cursor-pointer" data-cy="modal-information">
-                    <label className="modal-box relative  bg-white" htmlFor="">
-                      <h3 className="text-lg">
-                        <span>✔️</span> Activity Berhasil dihapus
-                      </h3>
-                    </label>
-                  </label>
                 </>
               );
             })}
           </div>
         </>
       )}
-      :{todos.length === 0 && <img src={empty} alt="empty-state" className="lg:w-1/3 h-80 mx-auto -mt-10 " data-cy="activity-empty-state" />}
+      {todos.length === 0 && <img src={empty} alt="empty-state" className="lg:w-1/3 h-80 mx-auto -mt-10 " data-cy="activity-empty-state" />}
     </div>
   );
 };

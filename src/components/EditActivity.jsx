@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, useMemo } from "react";
-import { ArrowLeft } from "react-bootstrap-icons";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ItemTodo from "./ItemTodo";
 import ModalAdd from "./ModalAdd";
 import Nav from "./Nav";
@@ -9,19 +8,16 @@ import Title from "./Title";
 import empty from "../assets/todo-empty-state.svg";
 import Swal from "sweetalert2";
 import ModalEdit from "./ModalEdit";
-import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
 import ModalDelete from "./ModalDelete";
 
 const EditActivity = () => {
   const [activity, setActivity] = useState([]);
   const [sortValue, setSortValue] = useState("terbaru");
   const id = window.location.pathname;
-  const nav = useNavigate();
   const [item, setItem] = useState([]);
   const [data, setData] = useState([]);
   const params = useParams();
   const data1 = item.todo_items;
-  const [show1, setShow1] = useState(false);
 
   const setActiveStatus = async (id, isActive) => {
     const request = {
@@ -72,6 +68,12 @@ const EditActivity = () => {
   };
 
   const deltodo = (id, title) => {
+    Swal.fire({
+      icon: "success",
+      html: '<span className="font-medium">List berhasil dihapus</span>',
+      showConfirmButton: false,
+      timer: 1000,
+    });
     axios.delete(`https://todo.api.devcode.gethired.id/todo-items/${id}`).then((res) => {
       setItem(res.data);
     });
@@ -88,6 +90,12 @@ const EditActivity = () => {
   };
 
   const editTodo = async (id, title, priority) => {
+    Swal.fire({
+      icon: "success",
+      html: '<span className="font-medium">List berhasil diedit</span>',
+      showConfirmButton: false,
+      timer: 1000,
+    });
     const request = {
       title,
       priority,
@@ -103,10 +111,6 @@ const EditActivity = () => {
       .catch((err) => console.alert(err.message));
     await getItemsList();
     setData([]);
-  };
-
-  const backPath = () => {
-    nav("/");
   };
 
   const sortedTodo = useMemo(() => {
@@ -140,12 +144,12 @@ const EditActivity = () => {
     if (sortValue === "belum_selesai") items = items?.sort((a, b) => compare(a, b, "is_active", "asc"));
 
     return items;
-  }, [sortValue, item]);
+  }, [sortValue, item, data1]);
 
   useEffect(() => {
     getItemsList();
     getEditdata();
-  }, [activity]);
+  }, [activity, getEditdata, getItemsList]);
 
   return (
     <div className="bg-white h-screen text-black font-signika" data-cy="edit-activity">
@@ -164,9 +168,9 @@ const EditActivity = () => {
               {sortedTodo.map((el) => {
                 return (
                   <>
-                    <ItemTodo key={el.id} id={el.id} is_active={el.is_active} title={el.title} priority={el.priority} setStatus={setActiveStatus} setData={setData} del={deltodo} show={setShow1} />
+                    <ItemTodo key={el.id} id={el.id} is_active={el.is_active} title={el.title} priority={el.priority} status={() => setActiveStatus(el.id, el.is_active)} setData={setData} del={deltodo} />
                     <ModalEdit id={el.id} title={el.title} priority={el.priority} edit={editTodo} />
-                    <ModalDelete title={el.title} id={el.id} show={show1} show1={setShow1} del={deltodo} />
+                    <ModalDelete title={el.title} id={el.id} del={() => deltodo(el.id)} />
                   </>
                 );
               })}

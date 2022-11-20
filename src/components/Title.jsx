@@ -72,7 +72,7 @@ function Title({ item, afterChange, addActivity, setSortValue, sortValue }) {
 
   return (
     <>
-      <div className="flex justify-between items-center w-full py-12 lg:px-16 px-8">
+      <div className="flex justify-between items-center w-full py-12 lg:px-12 px-8">
         {path == false ? (
           <>
             <h1 className="font-bold text-3xl" data-cy="activity-title">
@@ -89,7 +89,7 @@ function Title({ item, afterChange, addActivity, setSortValue, sortValue }) {
           </>
         ) : (
           <>
-            {item == undefined ? (
+            {item === undefined ? (
               <></>
             ) : (
               <>
@@ -117,7 +117,7 @@ function Title({ item, afterChange, addActivity, setSortValue, sortValue }) {
                       {sortOption.map((sortItem) => (
                         <li
                           key={sortItem.value}
-                          className={sortValue == sortItem.value ? "bordered" : ""}
+                          className={sortValue === sortItem.value ? "bordered" : ""}
                           onClick={() => {
                             setSortValue(sortItem.value);
                             document.activeElement.blur();
