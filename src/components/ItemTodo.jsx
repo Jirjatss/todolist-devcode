@@ -43,7 +43,7 @@ const ItemTodo = (item, setStatus, setData) => {
                 item.priority === "very-high" ? "bg-[#ED4C5C]" : item.priority === "high" ? "bg-[#F8A541]" : item.priority === "normal" ? "bg-[#00A790]" : item.priority == "low" ? "bg-[#428BC1]" : "bg-[#8942C1]"
               }`}
             ></div>
-            <p className={`text-md text-black ${item.is_active === 0 ? "line-through" : ""}`} data-cy="todo-item-checkbox">
+            <p className={`text-md text-black ${item.is_active === 0 ? "line-through" : ""}`} data-cy="todo-item-title">
               {item.title}
             </p>
             <label className={`cursor-pointer ${item.is_active === 0 ? "hidden" : ""}`} htmlFor={item.id}>
