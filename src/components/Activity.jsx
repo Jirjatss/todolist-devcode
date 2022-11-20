@@ -96,7 +96,7 @@ const Activity = () => {
                         <label htmlFor="modal-delete" className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button" onClick={() => setModal(!modal)}>
                           Batal
                         </label>
-                        <label htmlFor="modaldelete" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" data-cy="modal-delete-confirm-button" onClick={() => handledelete(el.id, setModal(!modal))}>
+                        <label htmlFor="modal-delete" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" data-cy="modal-delete-confirm-button" onClick={() => handledelete(el.id, setModal(!modal))}>
                           Hapus
                         </label>
                       </div>
