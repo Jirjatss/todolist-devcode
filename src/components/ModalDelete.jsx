@@ -13,7 +13,7 @@ const ModalDelete = (item) => {
             <label htmlFor="deltodo" className="btn bg-slate-400 border-none hover:bg-slate-500 text-black rounded-full" data-cy="modal-delete-cancel-button">
               Batal
             </label>
-            <label htmlFor="infotodo" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => item.del(item.id, item.show1(false))} data-cy="modal-delete-confirm-button">
+            <label htmlFor="deltodo" className="btn bg-red-500 border-none hover:bg-red-600 text-white rounded-full" onClick={() => item.del(item.id, item.show1(false))} data-cy="modal-delete-confirm-button">
               Hapus
             </label>
           </div>
